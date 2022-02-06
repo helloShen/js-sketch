@@ -65,8 +65,24 @@ const backgroundCell = function(idx, column) {
     return cell;
 };
 
+const initCanvasConstructor = function() {
+    /* row & column setting area */
+    const row = document.querySelector('.canvasRow');
+    const column = document.querySelector('.canvasColumn');
+    row.innerHTML = '16';
+    column.innerHTML = '16';
+    /* canvas initializer */
+    const initCanvasBtn = document.querySelector('.initCanvas');
+    initCanvasBtn.addEventListener('click', initCanvas);
+    /* binding event listeners to canvas */
+    const canvas = document.querySelector('.canvas');
+    canvas.draggable = false;
+    canvas.addEventListener('mousedown', toDraw, true); // capture must be true. canvas must turn on "isDrawing" before cell capture the mousedown event.
+    document.addEventListener('mouseup', stopDrawing, true); // document element handle this. no need to notify children.
+}
+
 /* create backgroundSwitch div */
-const backgroundSwitch = function() {
+const initBackgroundSwitch = function() {
     const bs = document.querySelector('.backgroundSwitch');
     bs.dataset.state = 'on'; // default: have the background layer
     bs.classList.add('on');
@@ -89,14 +105,14 @@ const switchBackground = function(e) {
     }
 }
 
-const rubber = function() {
+const initRubber = function() {
     const rubber = document.querySelector('.rubber');
     rubber.addEventListener('click', () => mode = 0, false);
 }
 
 /* color pelettes */
-const colors = ['#00A5E3', '#8DD7Bf', '#FF96C5', '#FF5768', '#FFBF65'];
-const colorPalette = function() {
+const colors = ['#000000', '#00A5E3', '#8DD7Bf', '#FF96C5', '#FF5768', '#FFBF65'];
+const initColorPalette = function() {
     const palette = document.querySelector('.colors');
     for (let i = 0; i < colors.length; i++) {
         let color = document.createElement('div');
@@ -136,26 +152,21 @@ const stopDrawing = function(e) {
     e.stopPropagation();
 };
 
-
-
+/* initialize the whole page */
+const init = function() {
+    initCanvasConstructor();
+    initCanvas();
+    initBackgroundSwitch();
+    initRubber();
+    initColorPalette();
+}
 
 /* variables */
 let mode = 1; // 0: rubber, 1: pencil
 let currentColor = 'black';
 let isDrawing = false;
 
-/* canvas init */
-const initCanvasBtn = document.querySelector('.initCanvas');
-initCanvasBtn.addEventListener('click', initCanvas);
-/* draw */
-const canvas = document.querySelector('.canvas');
-canvas.draggable = false;
-canvas.addEventListener('mousedown', toDraw, true); // capture must be true. canvas must turn on "isDrawing" before cell capture the mousedown event.
-document.addEventListener('mouseup', stopDrawing, true); // document element handle this. no need to notify children.
+init();
 
-initCanvas();
-backgroundSwitch();
-rubber();
-colorPalette();
 
 
