@@ -1,0 +1,54 @@
+:root {
+    --white0: #FFFFFF;
+    --white1: #F5F5F5;
+    --white2: #EBEBEB;
+    --gray1: #BFBFBF;
+    --gray2: #8B8B8B;
+    --gray3: #5B5B5B;
+    --black: #2F2F2F;
+    --green1: #65FBD2;
+    --green2: #05C19C;
+    --green3: #008B69;
+}
+
+.header {
+
+}
+
+.main {
+    
+}
+
+textarea.canvasRow,
+textarea.canvasColumn {
+    width: 4rem;
+    height: 1rem;
+}
+
+.initCanvas {
+    width: 4rem;
+    height: 2rem;
+    border: 1px solid var(--black);
+}
+
+.canvas {
+/* .background { */
+    height: 50vw;
+    width: 50vw;
+    opacity: 0;
+    display: grid;
+}
+
+/* .background {
+    z-index: 0;
+} */
+
+.cell {
+    background-color: var(--white1);
+    pointer-events: none;
+    /* border: 1px solid var(--white2); */
+}
+
+.footer {
+
+}
