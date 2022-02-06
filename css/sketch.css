@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 :root {
     --white0: #FFFFFF;
     --white1: #F5F5F5;
@@ -25,28 +31,52 @@ textarea.canvasColumn {
     height: 1rem;
 }
 
-.initCanvas {
+.initCanvas,
+.backgroundSwitch {
     width: 4rem;
     height: 2rem;
     border: 1px solid var(--black);
 }
 
-.canvas {
-/* .background { */
-    height: 50vw;
-    width: 50vw;
-    opacity: 0;
-    display: grid;
+.backgroundSwitch .on {
+    background-color: var(--green1);
 }
 
-/* .background {
-    z-index: 0;
-} */
+.canvas,
+.background {
+    height: 50vw;
+    width: 50vw;
+    display: grid;
+    border: 8px solid var(--green3);
+}
 
-.cell {
-    background-color: var(--white1);
-    pointer-events: none;
-    /* border: 1px solid var(--white2); */
+.canvas {
+    z-index: 1;
+}
+
+.background {
+    margin-top: -50vw;
+    z-index: -1;
+}
+
+.rubber {
+    width: 10vw;
+    height: 10vw;
+    border: 1px solid var(--black);
+    background-color: var(--white0);
+}
+
+.colors {
+    width: 25vw;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.color {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 0.5rem;
 }
 
 .footer {
